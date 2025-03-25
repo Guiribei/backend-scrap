@@ -1,23 +1,13 @@
 package api
 
 import (
-	"database/sql"
 	"net/http"
 )
 
-type APIServer struct {
-	addr	string
-	db		*sql.DB
+type Server struct {
+	Addr	string
 }
 
-func NewAPIServer(addr string, db *sql.DB) *APIServer {
-	return &APIServer{
-		addr: addr,
-		db: db,
-	}
-}
-
-func (s *APIServer) Run() error{
-	router := http.NewServeMux()
-	return http.ListenAndServe(s.addr, router)
+func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello from the server"))
 }
