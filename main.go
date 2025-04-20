@@ -36,4 +36,6 @@ func certHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/cert", certHandler)
+	fmt.Println("API disponível em http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
